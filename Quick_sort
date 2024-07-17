@@ -1,0 +1,36 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+def quickSort(arr):
+    if len(arr) <= 1:
+        return arr
+    
+    pivot = arr[-1]  # Choosing the last element as the pivot
+    left = []
+    right = []
+    
+    for num in arr[:-1]:
+        if num <= pivot:
+            left.append(num)
+        else:
+            right.append(num)
+    
+    return quickSort(left) + [pivot] + quickSort(right)
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input().strip())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    result = quickSort(arr)
+
+    fptr.write(' '.join(map(str, result)) + '\n')
+
+    fptr.close()
